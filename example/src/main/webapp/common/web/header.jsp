@@ -37,7 +37,7 @@
             
            <div class="social-info d-flex justify-content-between">
                 <a href="account/login"><i class="fa fa-user" aria-hidden="true"></i></a> 
-                <a href="account/register"><i class="fa fa-sign-out"  aria-hidden="true"></i></a> 
+                <a href="account/registerPage"><i class="fa fa-sign-out"  aria-hidden="true"></i></a> 
             	
                 <p>Nguyen Dinh Tien </p>              
             </div>

@@ -8,7 +8,7 @@
                 <div class="col-lg-6 bg-gray p-5 text-center">
                    <h4 class="text-center fw-bolder fs-2">Register</h4>
                    <p class="mb-3 fs-7">Register Now and Fell the New Digital World</p>
-                   <a href="register">
+                   <a href="registerPage">
                        <button class="btn fw-bold mb-5 btn-outline-success px-4 rounded-pill">Sign Up</button>
                    </a>
                    <div class="img-cover p-4">
