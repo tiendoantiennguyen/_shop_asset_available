@@ -1,7 +1,9 @@
 package com.springbootproject.example.entity.web;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -23,14 +25,14 @@ public class UserEntity {
 	@Column(name= "user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "name")
+	@Column(name = "name",length = 60, columnDefinition = "nvarchar(50) not null")
 	private String name;
 	@Column (name = "email")
 	private String email;
 	@Column (name = "password")
 	private String password;
 	@Column (name = "active")
-	private Integer active;
+	private boolean active;
 	
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -38,16 +40,15 @@ public class UserEntity {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName="user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName="role_id")
             )
-    private List<RoleEntity> roles = new ArrayList<>();
+    private Set<RoleEntity> roles = new HashSet<>();
 
 	
 	public UserEntity () {
 		
 	}
 
-
-	public UserEntity(Long id, String name, String email, String password, Integer active,
-			List<RoleEntity> roles) {
+	public UserEntity(Long id, String name, String email, String password, boolean active, Set<RoleEntity> roles) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -57,12 +58,12 @@ public class UserEntity {
 	}
 
 
-	public Long getUser_id() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setUser_id(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -97,23 +98,23 @@ public class UserEntity {
 	}
 
 
-	public Integer getActive() {
+	public boolean isActive() {
 		return active;
 	}
 
 
-	public void setActive(Integer active) {
+	public void setActive(boolean active) {
 		this.active = active;
 	}
 
 
-	public List<RoleEntity> getRoles() {
+	public Set<RoleEntity> getRoles() {
 		return roles;
 	}
 
 
-	public void setRoles(List<RoleEntity> roles) {
+	public void setRoles(Set<RoleEntity> roles) {
 		this.roles = roles;
 	}
-		
+	
 }

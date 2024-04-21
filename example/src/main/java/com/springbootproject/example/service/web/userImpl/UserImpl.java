@@ -1,7 +1,5 @@
 package com.springbootproject.example.service.web.userImpl;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,19 +30,19 @@ public class UserImpl implements UserInterface {
 	@Override
 	public UserEntity registerNewUser(UserEntity theUser) {
 
-		UserEntity user = new UserEntity();
-		user.setName(theUser.getName());
-		user.setEmail(theUser.getEmail());
-		user.setPassword(passwordEncoder.encode(theUser.getPassword()));
-		user.setActive(theUser.getActive());
-
-		RoleEntity role = roleRepository.findRoleByName("USER");
-		if (role == null) {
-			role = checkRoleExist();
-		}
-		user.setRoles(Arrays.asList(role));
-
-		return userRepository.save(user);
+		/*
+		 * UserEntity user = new UserEntity(); user.setName(theUser.getName());
+		 * user.setEmail(theUser.getEmail());
+		 * user.setPassword(passwordEncoder.encode(theUser.getPassword()));
+		 * user.setActive(theUser.getActive());
+		 * 
+		 * RoleEntity role = roleRepository.findRoleByName("USER"); if (role == null) {
+		 * role = checkRoleExist(); } user.setRoles(Arrays.asList(role));
+		 * 
+		 * return userRepository.save(user);
+		 */
+		
+		return null;
 	}
 	
 	private RoleEntity checkRoleExist() {
