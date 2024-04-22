@@ -62,54 +62,52 @@ public class SecurityConfig {
 	 * 
 	 * return http.build(); }
 	 */
-	
-	
-	
-	
+
 	@Autowired
 	private CustomUserDetailService customUserDetailService;
-	
+
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new UserServiceImpl();
 	}
-	
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
-	//kiem tra userservice co dung pass hay khong thi cho vo
+
+	// kiem tra userservice co dung pass hay khong thi cho vo
 	@Bean
-	public DaoAuthenticationProvider authenticationProvider () {
+	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 		authProvider.setUserDetailsService(customUserDetailService);
 		authProvider.setPasswordEncoder(passwordEncoder());
-		
+
 		return authProvider;
 	}
-	//kiem tra pass encoding co dung voi pass minh xac nhan hay khong
+
+	// kiem tra pass encoding co dung voi pass minh xac nhan hay khong
 	protected void config(AuthenticationManagerBuilder auth) throws Exception {
-		
+
 		auth.userDetailsService(customUserDetailService).passwordEncoder(passwordEncoder());
-		
+
 	}
-	
+
 	// dinh nghia bo loc authentication cho he thong biet
 	@Bean
-	public AuthenticationManager authenticationManager (AuthenticationConfiguration authConfig) throws Exception {
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
 		final List<GlobalAuthenticationConfigurerAdapter> configurers = new ArrayList<>();
 		configurers.add(new GlobalAuthenticationConfigurerAdapter() {
 			@Override
-			public void configure(AuthenticationManagerBuilder auth) throws Exception{
-				
+			public void configure(AuthenticationManagerBuilder auth) throws Exception {
+
 			}
 		});
 		return authConfig.getAuthenticationManager();
 	}
-	
+
 	@Bean
-	public SecurityFilterChain filterChain (HttpSecurity http) throws Exception{
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		/*
 		 * return http.csrf().disable() .authorizeHttpRequests()
 		 * .requestMatchers(HttpMethod.GET, "/**").permitAll()
@@ -118,21 +116,16 @@ public class SecurityConfig {
 		 * .formLogin().loginPage("/login").permitAll() .and() .logout().permitAll()
 		 * .and() .exceptionHandling().accessDeniedPage("/403") .and() .build();
 		 */
-		
-		
-		http.authorizeHttpRequests(configurer -> configurer
-				 .requestMatchers(HttpMethod.GET, "/**").permitAll()
-				 .requestMatchers(HttpMethod.POST, "/account/register/**").permitAll()
-				 .requestMatchers(HttpMethod.PUT, "/api/admin/edit/**").hasRole("ADMIN")
-				 .requestMatchers(HttpMethod.DELETE, "/api/admin/delete/**").hasRole("ADMIN")
-				 );
-				 
-				 http.httpBasic(Customizer.withDefaults()); http.csrf(csrf -> csrf.disable());
-				  
-				 return http.build();
-				 }
-				 
-											
-	}
-	
 
+		http.authorizeHttpRequests(configurer -> configurer.requestMatchers(HttpMethod.GET, "/**").permitAll()
+				.requestMatchers(HttpMethod.POST, "/web/account/register/**").permitAll()
+				.requestMatchers(HttpMethod.PUT, "/api/admin/edit/**").hasRole("ADMIN")
+				.requestMatchers(HttpMethod.DELETE, "/api/admin/delete/**").hasRole("ADMIN"));
+
+		http.httpBasic(Customizer.withDefaults());
+		http.csrf(csrf -> csrf.disable());
+
+		return http.build();
+	}
+
+}

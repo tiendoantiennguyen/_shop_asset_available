@@ -19,8 +19,9 @@ public class UserRegisterController {
 	private UserInterface userInterface;
 	
 	@GetMapping ("/registerPage")
-	public ModelAndView homePage() {
+	public ModelAndView homePage(@ModelAttribute("user") UserEntity theUserEntity) {
 		ModelAndView mav = new ModelAndView("login/register");
+		mav.addObject("user", theUserEntity);
 		return mav;
 	}
 
