@@ -25,8 +25,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.springbootproject.example.service.web.userImpl.CustomUserDetailService;
-import com.springbootproject.example.service.web.userImpl.UserServiceImpl;
+import com.springbootproject.example.service.web.user.userImpl.CustomUserDetailService;
+import com.springbootproject.example.service.web.user.userImpl.UserServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -120,7 +120,12 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(configurer -> configurer.requestMatchers(HttpMethod.GET, "/**").permitAll()
 				.requestMatchers(HttpMethod.POST, "/web/account/register/**").permitAll()
 				.requestMatchers(HttpMethod.PUT, "/api/admin/edit/**").hasRole("ADMIN")
-				.requestMatchers(HttpMethod.DELETE, "/api/admin/delete/**").hasRole("ADMIN"));
+				.requestMatchers(HttpMethod.DELETE, "/api/admin/delete/**").hasRole("ADMIN"))
+		/*
+		 * .formLogin(form -> form .loginPage("/web/account/login")
+		 * .loginProcessingUrl("/web/account/login") .permitAll() )
+		 */
+		; 
 
 		http.httpBasic(Customizer.withDefaults());
 		http.csrf(csrf -> csrf.disable());

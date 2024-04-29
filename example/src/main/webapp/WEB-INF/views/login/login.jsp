@@ -19,17 +19,18 @@
                    <div class="row d-flex vh-100">
                        <div class="col-md-8 p-4 ikigui m-auto text-center align-items-center">
                            <h4 class="text-center fw-bolder mb-4 fs-2">Login</h4>
+                           <form:form action="login" method="POST" modelAttribute="user">
                            <div class="input-group mb-4">
                               <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-person"></i></span>
-                              <input type="text" class="form-control ps-2 border-start-0 fs-7 inbg form-control-lg mb-0" placeholder="Enter Username" aria-label="Username" aria-describedby="basic-addon1">
+                              <form:input path="name" type="text" class="form-control ps-2 border-start-0 fs-7 inbg form-control-lg mb-0" placeholder="Enter Username" aria-label="Username" aria-describedby="basic-addon1" />
                            </div>
                            <div class="input-group mb-4">
                               <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-lock"></i></span>
-                              <input type="password" class="form-control ps-2 fs-7 border-start-0 form-control-lg inbg mb-0" placeholder="Enter Password" aria-label="Username" aria-describedby="basic-addon1">
+                              <form:input path="password" type="password" class="form-control ps-2 fs-7 border-start-0 form-control-lg inbg mb-0" placeholder="Enter Password" aria-label="Username" aria-describedby="basic-addon1" />
                            </div>
                            
-                           <button class="btn btn-lg fw-bold fs-7 btn-success  w-100">Login</button>
-                           
+                           <form:button class="btn btn-lg fw-bold fs-7 btn-success  w-100">Login</form:button>
+                           </form:form>
                            <p class="text-center py-4 fw-bold fs-8">Or Sign in with social platforms</p>
                            
                            <ul class="d-inline-block mx-auto">

@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springbootproject.example.entity.web.UserEntity;
-import com.springbootproject.example.service.web.UserInterface;
+import com.springbootproject.example.entity.web.user.UserEntity;
+import com.springbootproject.example.service.web.user.IUserService;
 
 @RestController
 @RequestMapping("/web/account")
 public class UserRegisterController {
 
 	@Autowired
-	private UserInterface userInterface;
+	private IUserService userInterface;
 	
 	@GetMapping ("/registerPage")
 	public ModelAndView homePage(@ModelAttribute("user") UserEntity theUserEntity) {
@@ -29,6 +29,6 @@ public class UserRegisterController {
 	public String registerNewUser(@ModelAttribute("user") UserEntity theUserEntity) {
 		userInterface.registerNewUser(theUserEntity);
 	
-	    return "redirect:/web/account/login"; 
+	    return "redirect:/login"; 
 	}
 }
