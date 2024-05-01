@@ -1,114 +1,49 @@
-package com.springbootproject.example.entity.web.product;
+package com.springbootproject.example.model.admin.product;
 
-import java.io.Serializable;
+import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "products")
-public class ProductsEntity implements Serializable {
-
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name = "product_id")
+public class ProductModel {
+	
 	private String productId;
-
-	@Column(name = "sku")
 	private String SKU;
-
-	@Column(name = "id_sku")
 	private String IDSKU;
-
-	@Column(name = "vendor_product_id")
 	private String vendorProductId;
-
-	@Column(name = "product_name", columnDefinition = ("nvarchar(255)"))
 	private String productName;
-
-	@Column(name = "product_description",columnDefinition = ("nvarchar(255) not null"))
 	private String productDescription;
-
-	@Column(name = "Supplier_id")
 	private String SupplierId;
-
-	/*
-	 * @Column(name = "category_id") private String categoryId;
-	 */
-	@Column(name = "quantity_per_unit")
+	private Long categoryId;
 	private Long quantityPerUnit;
-
-	@Column(name = "unit_price")
 	private Long unitPrice;
-
-	@Column(name = "msrp")
 	private String MSRP;
-
-	@Column(name = "available_size")
 	private String availableSize;
-
-	@Column(name = "available_color")
 	private String availableColor;
-
-	@Column(name = "size")
 	private String size;
-
-	@Column(name = "color")
 	private String color;
-
-	@Column(name = "discount")
 	private String discount;
-
-	@Column(name = "unit_weight")
 	private String unitWeight;
-
-	@Column(name = "units_in_stock")
 	private String unitsInStock;
-
-	@Column(name = "unit_on_order")
 	private String unitOnOrder;
-
-	@Column(name = "re_order_level")
 	private String reOrderLevel;
-
-	@Column(name = "product_available")
 	private String productAvailable;
-
-	@Column(name = "discount_available")
 	private String discountAvailable;
-
-	@Column(name = "current_order")
 	private String currentOrder;
-
-	@Column(name = "picture")
-	private String picture;
-
-	@Column(name = "ranking")
+	private String images;
+	private MultipartFile imageFile;
 	private String ranking;
-
-	@Column(name = "note")
 	private String note;
-
-	// ket noi many to 1 vs categories
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-	private CategoryEntity category;
-
-	public ProductsEntity() {
-
+	private Boolean isEdit = false;
+	
+	public ProductModel() {
+		
 	}
 
-	public ProductsEntity(String productId, String sKU, String iDSKU, String vendorProductId, String productName,
-			String productDescription, String supplierId, Long quantityPerUnit, Long unitPrice,
+	public ProductModel(String productId, String sKU, String iDSKU, String vendorProductId, String productName,
+			String productDescription, String supplierId, Long categoryId, Long quantityPerUnit, Long unitPrice,
 			String mSRP, String availableSize, String availableColor, String size, String color, String discount,
 			String unitWeight, String unitsInStock, String unitOnOrder, String reOrderLevel, String productAvailable,
-			String discountAvailable, String currentOrder, String picture, String ranking, String note,
-			CategoryEntity category) {
+			String discountAvailable, String currentOrder, String images, MultipartFile imageFile, String ranking,
+			String note, Boolean isEdit) {
+		super();
 		this.productId = productId;
 		SKU = sKU;
 		IDSKU = iDSKU;
@@ -116,6 +51,7 @@ public class ProductsEntity implements Serializable {
 		this.productName = productName;
 		this.productDescription = productDescription;
 		SupplierId = supplierId;
+		this.categoryId = categoryId;
 		this.quantityPerUnit = quantityPerUnit;
 		this.unitPrice = unitPrice;
 		MSRP = mSRP;
@@ -131,10 +67,11 @@ public class ProductsEntity implements Serializable {
 		this.productAvailable = productAvailable;
 		this.discountAvailable = discountAvailable;
 		this.currentOrder = currentOrder;
-		this.picture = picture;
+		this.images = images;
+		this.imageFile = imageFile;
 		this.ranking = ranking;
 		this.note = note;
-		this.category = category;
+		this.isEdit = isEdit;
 	}
 
 	public String getProductId() {
@@ -191,6 +128,14 @@ public class ProductsEntity implements Serializable {
 
 	public void setSupplierId(String supplierId) {
 		SupplierId = supplierId;
+	}
+
+	public Long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public Long getQuantityPerUnit() {
@@ -313,12 +258,20 @@ public class ProductsEntity implements Serializable {
 		this.currentOrder = currentOrder;
 	}
 
-	public String getPicture() {
-		return picture;
+	public String getImages() {
+		return images;
 	}
 
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setImages(String images) {
+		this.images = images;
+	}
+
+	public MultipartFile getImageFile() {
+		return imageFile;
+	}
+
+	public void setImageFile(MultipartFile imageFile) {
+		this.imageFile = imageFile;
 	}
 
 	public String getRanking() {
@@ -337,16 +290,12 @@ public class ProductsEntity implements Serializable {
 		this.note = note;
 	}
 
-	public CategoryEntity getCategory() {
-		return category;
+	public Boolean getIsEdit() {
+		return isEdit;
 	}
 
-	public void setCategory(CategoryEntity category) {
-		this.category = category;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setIsEdit(Boolean isEdit) {
+		this.isEdit = isEdit;
 	}
 
 }

@@ -1,9 +1,7 @@
-package com.springbootproject.example.entity.web.product;
+package com.springbootproject.example.entity.admin.product;
 
 import java.io.Serializable;
 import java.util.Set;
-
-import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -29,7 +27,7 @@ public class CategoryEntity implements Serializable {
 	private String categoryCode;
 
 	@Column(name = "category_name", columnDefinition = "nvarchar(255)")
-	private String categotyName;
+	private String categoryName;
 
 	@Column(name = "description")
 	private String description;
@@ -48,11 +46,11 @@ public class CategoryEntity implements Serializable {
 
 	}
 
-	public CategoryEntity(Long categoryId, String categoryCode, String categotyName, String description, String images,
+	public CategoryEntity(Long categoryId, String categoryCode, String categoryName, String description, String images,
 			 Boolean active, Set<ProductsEntity> products) {
 		this.categoryId = categoryId;
 		this.categoryCode = categoryCode;
-		this.categotyName = categotyName;
+		this.categoryName = categoryName;
 		this.description = description;
 		this.images = images;
 		this.active = active;
@@ -76,11 +74,11 @@ public class CategoryEntity implements Serializable {
 	}
 
 	public String getCategotyName() {
-		return categotyName;
+		return categoryName;
 	}
 
-	public void setCategotyName(String categotyName) {
-		this.categotyName = categotyName;
+	public void setCategotyName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	public String getDescription() {

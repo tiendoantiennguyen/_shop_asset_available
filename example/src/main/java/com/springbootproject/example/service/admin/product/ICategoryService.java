@@ -1,4 +1,4 @@
-package com.springbootproject.example.service.web.product;
+package com.springbootproject.example.service.admin.product;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 
-import com.springbootproject.example.entity.web.product.CategoryEntity;
+import com.springbootproject.example.entity.admin.product.CategoryEntity;
 
 public interface ICategoryService {
 
@@ -71,5 +71,11 @@ public interface ICategoryService {
 	<S extends CategoryEntity> List<S> saveAll(Iterable<S> entities);
 
 	<S extends CategoryEntity> S save(S entity);
+	
+	// function to search data for all category
+	List<CategoryEntity> findByCategoryNameContainining(String name);
+	
+	// function to search data for all category and pageable
+	Page<CategoryEntity> findByCategoryNameContainining(String name,Pageable pageable);
 
 }

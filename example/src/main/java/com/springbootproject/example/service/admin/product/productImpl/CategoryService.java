@@ -1,4 +1,4 @@
-package com.springbootproject.example.service.web.product.productImpl;
+package com.springbootproject.example.service.admin.product.productImpl;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,9 +12,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.stereotype.Service;
 
-import com.springbootproject.example.entity.web.product.CategoryEntity;
-import com.springbootproject.example.repository.web.product.CategoryRepository;
-import com.springbootproject.example.service.web.product.ICategoryService;
+import com.springbootproject.example.entity.admin.product.CategoryEntity;
+import com.springbootproject.example.repository.admin.product.CategoryRepository;
+import com.springbootproject.example.service.admin.product.ICategoryService;
 
 @Service
 public class CategoryService implements ICategoryService {
@@ -175,6 +175,18 @@ public class CategoryService implements ICategoryService {
 	@Override
 	public void deleteAll() {
 		categoryRepository.deleteAll();
+	}
+
+	@Override
+	public List<CategoryEntity> findByCategoryNameContainining(String name) {
+
+		return categoryRepository.findByCategoryNameContainining(name);
+	}
+
+	@Override
+	public Page<CategoryEntity> findByCategoryNameContainining(String name, Pageable pageable) {
+
+		return categoryRepository.findByCategoryNameContainining(name, pageable);
 	}
 
 }

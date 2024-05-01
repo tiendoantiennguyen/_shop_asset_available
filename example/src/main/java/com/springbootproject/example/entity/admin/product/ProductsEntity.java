@@ -1,43 +1,114 @@
-package com.springbootproject.example.model.web.product;
+package com.springbootproject.example.entity.admin.product;
 
-public class Products {
-	
+import java.io.Serializable;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "products")
+public class ProductsEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "product_id")
 	private String productId;
+
+	@Column(name = "sku")
 	private String SKU;
+
+	@Column(name = "id_sku")
 	private String IDSKU;
+
+	@Column(name = "vendor_product_id")
 	private String vendorProductId;
+
+	@Column(name = "product_name", columnDefinition = ("nvarchar(255)"))
 	private String productName;
+
+	@Column(name = "product_description",columnDefinition = ("nvarchar(255) not null"))
 	private String productDescription;
+
+	@Column(name = "Supplier_id")
 	private String SupplierId;
-	private String categoryId;
+
+	/*
+	 * @Column(name = "category_id") private String categoryId;
+	 */
+	@Column(name = "quantity_per_unit")
 	private Long quantityPerUnit;
+
+	@Column(name = "unit_price")
 	private Long unitPrice;
+
+	@Column(name = "msrp")
 	private String MSRP;
+
+	@Column(name = "available_size")
 	private String availableSize;
+
+	@Column(name = "available_color")
 	private String availableColor;
+
+	@Column(name = "size")
 	private String size;
+
+	@Column(name = "color")
 	private String color;
+
+	@Column(name = "discount")
 	private String discount;
+
+	@Column(name = "unit_weight")
 	private String unitWeight;
+
+	@Column(name = "units_in_stock")
 	private String unitsInStock;
+
+	@Column(name = "unit_on_order")
 	private String unitOnOrder;
+
+	@Column(name = "re_order_level")
 	private String reOrderLevel;
+
+	@Column(name = "product_available")
 	private String productAvailable;
+
+	@Column(name = "discount_available")
 	private String discountAvailable;
+
+	@Column(name = "current_order")
 	private String currentOrder;
+
+	@Column(name = "picture")
 	private String picture;
+
+	@Column(name = "ranking")
 	private String ranking;
+
+	@Column(name = "note")
 	private String note;
-	
-	public Products() {
-		
+
+	// ket noi many to 1 vs categories
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private CategoryEntity category;
+
+	public ProductsEntity() {
+
 	}
 
-	public Products(String productId, String sKU, String iDSKU, String vendorProductId, String productName,
-			String productDescription, String supplierId, String categoryId, Long quantityPerUnit, Long unitPrice,
+	public ProductsEntity(String productId, String sKU, String iDSKU, String vendorProductId, String productName,
+			String productDescription, String supplierId, Long quantityPerUnit, Long unitPrice,
 			String mSRP, String availableSize, String availableColor, String size, String color, String discount,
 			String unitWeight, String unitsInStock, String unitOnOrder, String reOrderLevel, String productAvailable,
-			String discountAvailable, String currentOrder, String picture, String ranking, String note) {
+			String discountAvailable, String currentOrder, String picture, String ranking, String note,
+			CategoryEntity category) {
 		this.productId = productId;
 		SKU = sKU;
 		IDSKU = iDSKU;
@@ -45,7 +116,6 @@ public class Products {
 		this.productName = productName;
 		this.productDescription = productDescription;
 		SupplierId = supplierId;
-		this.categoryId = categoryId;
 		this.quantityPerUnit = quantityPerUnit;
 		this.unitPrice = unitPrice;
 		MSRP = mSRP;
@@ -64,6 +134,7 @@ public class Products {
 		this.picture = picture;
 		this.ranking = ranking;
 		this.note = note;
+		this.category = category;
 	}
 
 	public String getProductId() {
@@ -120,14 +191,6 @@ public class Products {
 
 	public void setSupplierId(String supplierId) {
 		SupplierId = supplierId;
-	}
-
-	public String getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
 	}
 
 	public Long getQuantityPerUnit() {
@@ -202,11 +265,11 @@ public class Products {
 		this.unitWeight = unitWeight;
 	}
 
-	public String getUnitsStock() {
+	public String getUnitsInStock() {
 		return unitsInStock;
 	}
 
-	public void setUnitsStock(String unitsInStock) {
+	public void setUnitsInStock(String unitsInStock) {
 		this.unitsInStock = unitsInStock;
 	}
 
@@ -273,6 +336,17 @@ public class Products {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	
-	
+
+	public CategoryEntity getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }
