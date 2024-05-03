@@ -19,6 +19,8 @@
 
 <link href="//fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
+<link href="<c:url value='/template/admin/vendor/datatables/dataTables.bootstrap4.min.css'/>" rel="stylesheet">
+
 </head>
 <body id="page-top">
 
@@ -31,20 +33,15 @@
 			<div id="content">
 				<%@ include file="/common/admin/maintopbar.jsp"%>
 
-
-
 				<sitemesh:write property='body'></sitemesh:write>
-
 
 			</div>
 			<%@ include file="/common/admin/footer.jsp"%>
 		</div>
 		
-
-
 	</div>
 	
-	    <!-- Scroll to Top Button-->
+	<!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
@@ -89,6 +86,13 @@
 	<script src="<c:url value='/template/admin/js/demo/chart-area-demo.js'/>"></script>
 	
 	<script src="<c:url value='/template/admin/js/demo/chart-pie-demo.js'/>"></script>
+	
+	<!-- Table date javascripts  -->
+	<script src="<c:url value='/template/admin/vendor/datatables/jquery.dataTables.min.js'/>"></script>
+	
+    <script src="<c:url value='/template/admin/vendor/datatables/dataTables.bootstrap4.min.js'/>"></script>
+    
+	<script src="<c:url value='/template/admin/js/demo/datatables-demo.js'/>"></script>
 	
 </body>
 </html>

@@ -1,129 +1,52 @@
-package com.springbootproject.example.entity.web.customer;
+package com.springbootproject.example.model.admin.customer;
 
 import java.util.Date;
-import java.util.Set;
 
-import com.springbootproject.example.entity.web.product.OrderEntity;
+public class AdminCustomerModel {
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "Customer")
-public class CustomerEntity {
-
-	@Id
-	@Column(name = "customerId")
 	private String customerId;
-
-	@Column(name = "first_name")
 	private String firstName;
-
-	@Column(name = "last_name")
 	private String lastName;
-
-	@Column(name = "class_id")
 	private String classId;
-
-	@Column(name = "room")
 	private String room;
-
-	@Column(name = "building")
 	private String building;
-
-	@Column(name = "address1")
 	private String address1;
-
-	@Column(name = "address2")
 	private String address2;
-
-	@Column(name = "city")
 	private String city;
-
-	@Column(name = "state")
 	private String state;
-
-	@Column(name = "postal_code")
 	private Long postalCode;
-
-	@Column(name = "country")
 	private String country;
-
-	@Column(name = "phone")
 	private String phone;
-
-	@Column(name = "email")
 	private String email;
-
-	@Column(name = "voice_mail")
 	private String voiceMail;
-
-	@Column(name = "password")
 	private String password;
-
-	@Column(name = "credit_card")
 	private String creditCard;
-
-	@Column(name = "credit_card_type_id")
 	private String creditCardTypeId;
-
-	@Column(name = "card_exp_mo")
 	private String cardExpMo;
-
-	@Column(name = "card_expired_year")
 	private String cardExpiredYear;
-
-	@Column(name = "billing_address")
 	private String billingAddress;
-
-	@Column(name = "billing_city")
 	private String billingCity;
-
-	@Column(name = "billing_region")
 	private String billingRegion;
-
-	@Column(name = "billing_postal_code")
 	private String billingPostalCode;
-
-	@Column(name = "billing_country")
 	private String billingCountry;
-
-	@Column(name = "ship_address")
 	private String shipAddress;
-
-	@Column(name = "ship_city")
 	private String shipCity;
-
-	@Column(name = "ship_region")
 	private String shipRegion;
-
-	@Column(name = "ship_postal_code")
 	private String shipPostalCode;
-
-	@Column(name = "ship_country")
 	private String shipCountry;
-
-	@Column(name = "date_entry")
 	private Date dateEntry;
 
-	@OneToMany(mappedBy = "customers", cascade = CascadeType.ALL)
-	private Set<OrderEntity> orders;
-
-	public CustomerEntity() {
+	public AdminCustomerModel() {
 
 	}
 
-	public CustomerEntity(String customerId, String firstName, String lastName, String classId, String room,
+	public AdminCustomerModel(String customerId, String firstName, String lastName, String classId, String room,
 			String building, String address1, String address2, String city, String state, Long postalCode,
 			String country, String phone, String email, String voiceMail, String password, String creditCard,
 			String creditCardTypeId, String cardExpMo, String cardExpiredYear, String billingAddress,
 			String billingCity, String billingRegion, String billingPostalCode, String billingCountry,
 			String shipAddress, String shipCity, String shipRegion, String shipPostalCode, String shipCountry,
-			Date dateEntry, Set<OrderEntity> orders) {
+			Date dateEntry) {
 		this.customerId = customerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -155,7 +78,6 @@ public class CustomerEntity {
 		this.shipPostalCode = shipPostalCode;
 		this.shipCountry = shipCountry;
 		this.dateEntry = dateEntry;
-		this.orders = orders;
 	}
 
 	public String getCustomerId() {
@@ -406,11 +328,4 @@ public class CustomerEntity {
 		this.dateEntry = dateEntry;
 	}
 
-	public Set<OrderEntity> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Set<OrderEntity> orders) {
-		this.orders = orders;
-	}
 }

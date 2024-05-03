@@ -370,8 +370,4 @@
 
 </div>
 <!-- /.container-fluid -->
-
-<body>
-
-</body>
 </html>

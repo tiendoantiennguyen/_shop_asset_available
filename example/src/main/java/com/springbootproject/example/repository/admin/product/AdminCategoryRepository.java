@@ -7,14 +7,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.springbootproject.example.entity.admin.product.CategoryEntity;
+import com.springbootproject.example.entity.admin.product.AdminCategoryEntity;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
+public interface AdminCategoryRepository extends JpaRepository<AdminCategoryEntity, Long> {
 	//funtion to get list of category by name.
 	
-	List<CategoryEntity> findByCategoryNameContainining(String name);
-	Page<CategoryEntity> findByCategoryNameContainining(String name,Pageable pageable);
+	List<AdminCategoryEntity> findByCategoryNameContaining(String name);
+	Page<AdminCategoryEntity> findByCategoryNameContaining(String name,Pageable pageable);
 	
 
 }

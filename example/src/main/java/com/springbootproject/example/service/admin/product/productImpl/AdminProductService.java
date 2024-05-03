@@ -12,46 +12,46 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.stereotype.Service;
 
-import com.springbootproject.example.entity.admin.product.ProductsEntity;
-import com.springbootproject.example.repository.admin.product.ProductRepository;
-import com.springbootproject.example.service.admin.product.IProductService;
+import com.springbootproject.example.entity.admin.product.AdminProductsEntity;
+import com.springbootproject.example.repository.admin.product.AdminProductRepository;
+import com.springbootproject.example.service.admin.product.IAdminProductService;
 
 @Service
-public class ProductService implements IProductService{
+public class AdminProductService implements IAdminProductService{
 	
 	@Autowired
-	private ProductRepository productRepository;
+	private AdminProductRepository productRepository;
 	
-	public ProductService () {
+	public AdminProductService () {
 		
 	}
 
-	public ProductService(ProductRepository productRepository) {
+	public AdminProductService(AdminProductRepository productRepository) {
 		this.productRepository = productRepository;
 	}
 
 	@Override
-	public <S extends ProductsEntity> S save(S entity) {
+	public <S extends AdminProductsEntity> S save(S entity) {
 		return productRepository.save(entity);
 	}
 
 	@Override
-	public List<ProductsEntity> findAll(Sort sort) {
+	public List<AdminProductsEntity> findAll(Sort sort) {
 		return productRepository.findAll(sort);
 	}
 
 	@Override
-	public Page<ProductsEntity> findAll(Pageable pageable) {
+	public Page<AdminProductsEntity> findAll(Pageable pageable) {
 		return productRepository.findAll(pageable);
 	}
 
 	@Override
-	public <S extends ProductsEntity> List<S> saveAll(Iterable<S> entities) {
+	public <S extends AdminProductsEntity> List<S> saveAll(Iterable<S> entities) {
 		return productRepository.saveAll(entities);
 	}
 
 	@Override
-	public <S extends ProductsEntity> Optional<S> findOne(Example<S> example) {
+	public <S extends AdminProductsEntity> Optional<S> findOne(Example<S> example) {
 		return productRepository.findOne(example);
 	}
 
@@ -61,37 +61,37 @@ public class ProductService implements IProductService{
 	}
 
 	@Override
-	public <S extends ProductsEntity> S saveAndFlush(S entity) {
+	public <S extends AdminProductsEntity> S saveAndFlush(S entity) {
 		return productRepository.saveAndFlush(entity);
 	}
 
 	@Override
-	public <S extends ProductsEntity> List<S> saveAllAndFlush(Iterable<S> entities) {
+	public <S extends AdminProductsEntity> List<S> saveAllAndFlush(Iterable<S> entities) {
 		return productRepository.saveAllAndFlush(entities);
 	}
 
 	@Override
-	public List<ProductsEntity> findAll() {
+	public List<AdminProductsEntity> findAll() {
 		return productRepository.findAll();
 	}
 
 	@Override
-	public List<ProductsEntity> findAllById(Iterable<String> ids) {
+	public List<AdminProductsEntity> findAllById(Iterable<String> ids) {
 		return productRepository.findAllById(ids);
 	}
 
 	@Override
-	public void deleteInBatch(Iterable<ProductsEntity> entities) {
+	public void deleteInBatch(Iterable<AdminProductsEntity> entities) {
 		productRepository.deleteInBatch(entities);
 	}
 
 	@Override
-	public Optional<ProductsEntity> findById(String id) {
+	public Optional<AdminProductsEntity> findById(String id) {
 		return productRepository.findById(id);
 	}
 
 	@Override
-	public void deleteAllInBatch(Iterable<ProductsEntity> entities) {
+	public void deleteAllInBatch(Iterable<AdminProductsEntity> entities) {
 		productRepository.deleteAllInBatch(entities);
 	}
 
@@ -101,7 +101,7 @@ public class ProductService implements IProductService{
 	}
 
 	@Override
-	public <S extends ProductsEntity> long count(Example<S> example) {
+	public <S extends AdminProductsEntity> long count(Example<S> example) {
 		return productRepository.count(example);
 	}
 
@@ -111,7 +111,7 @@ public class ProductService implements IProductService{
 	}
 
 	@Override
-	public <S extends ProductsEntity> boolean exists(Example<S> example) {
+	public <S extends AdminProductsEntity> boolean exists(Example<S> example) {
 		return productRepository.exists(example);
 	}
 
@@ -121,12 +121,12 @@ public class ProductService implements IProductService{
 	}
 
 	@Override
-	public ProductsEntity getOne(String id) {
+	public AdminProductsEntity getOne(String id) {
 		return productRepository.getOne(id);
 	}
 
 	@Override
-	public <S extends ProductsEntity, R> R findBy(Example<S> example,
+	public <S extends AdminProductsEntity, R> R findBy(Example<S> example,
 			Function<FetchableFluentQuery<S>, R> queryFunction) {
 		return productRepository.findBy(example, queryFunction);
 	}
@@ -142,12 +142,12 @@ public class ProductService implements IProductService{
 	}
 
 	@Override
-	public ProductsEntity getById(String id) {
+	public AdminProductsEntity getById(String id) {
 		return productRepository.getById(id);
 	}
 
 	@Override
-	public void delete(ProductsEntity entity) {
+	public void delete(AdminProductsEntity entity) {
 		productRepository.delete(entity);
 	}
 
@@ -157,17 +157,17 @@ public class ProductService implements IProductService{
 	}
 
 	@Override
-	public ProductsEntity getReferenceById(String id) {
+	public AdminProductsEntity getReferenceById(String id) {
 		return productRepository.getReferenceById(id);
 	}
 
 	@Override
-	public void deleteAll(Iterable<? extends ProductsEntity> entities) {
+	public void deleteAll(Iterable<? extends AdminProductsEntity> entities) {
 		productRepository.deleteAll(entities);
 	}
 
 	@Override
-	public <S extends ProductsEntity> List<S> findAll(Example<S> example) {
+	public <S extends AdminProductsEntity> List<S> findAll(Example<S> example) {
 		return productRepository.findAll(example);
 	}
 
@@ -177,16 +177,15 @@ public class ProductService implements IProductService{
 	}
 
 	@Override
-	public List<ProductsEntity> findByCategoryNameContainining(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<AdminProductsEntity> findByProductNameContaining(String name) {
+		
+		return productRepository.findByProductNameContaining(name);
 	}
 
 	@Override
-	public Page<ProductsEntity> findByCategoryNameContainining(String name, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+	public Page<AdminProductsEntity> findByProductNameContaining(String name, Pageable pageable) {
+		
+		return productRepository.findByProductNameContaining(name, pageable);
 	}
-	
 
 }

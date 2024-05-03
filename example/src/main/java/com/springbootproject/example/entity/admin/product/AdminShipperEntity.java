@@ -1,4 +1,4 @@
-package com.springbootproject.example.entity.web.product;
+package com.springbootproject.example.entity.admin.product;
 
 import java.util.Set;
 
@@ -10,12 +10,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "shipper")
-public class ShipperEntity {
+@Table(name = "a_shipper")
+public class AdminShipperEntity {
 
 	@Id
-	@Column(name = "shiperId")
-	private String shiperId;
+	@Column(name = "shipper_id")
+	private String shipperId;
 
 	@Column(name = "company_name")
 	private String companyName;
@@ -23,51 +23,60 @@ public class ShipperEntity {
 	@Column(name = "phone")
 	private String phone;
 	
-	//one to many table shipper to order
-	@OneToMany(mappedBy = "shippers", cascade = CascadeType.ALL)
-	private Set<OrderEntity> orders;
+	@OneToMany(mappedBy = "adorders_adshiper", cascade = CascadeType.ALL)
+	private Set<AdminOrderEntity> orders;
 	
-	public ShipperEntity() {
+
+	public AdminShipperEntity() {
 
 	}
 
-	public ShipperEntity(String shiperId, String companyName, String phone, Set<OrderEntity> orders) {
-		this.shiperId = shiperId;
+
+	public AdminShipperEntity(String shipperId, String companyName, String phone, Set<AdminOrderEntity> orders) {
+		this.shipperId = shipperId;
 		this.companyName = companyName;
 		this.phone = phone;
 		this.orders = orders;
 	}
 
-	public String getShiperId() {
-		return shiperId;
+
+	public String getShipperId() {
+		return shipperId;
 	}
 
-	public void setShiperId(String shiperId) {
-		this.shiperId = shiperId;
+
+	public void setShipperId(String shipperId) {
+		this.shipperId = shipperId;
 	}
+
 
 	public String getCompanyName() {
 		return companyName;
 	}
 
+
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
+
 
 	public String getPhone() {
 		return phone;
 	}
 
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public Set<OrderEntity> getOrders() {
+
+	public Set<AdminOrderEntity> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(Set<OrderEntity> orders) {
+
+	public void setOrders(Set<AdminOrderEntity> orders) {
 		this.orders = orders;
 	}
-
+	
 }

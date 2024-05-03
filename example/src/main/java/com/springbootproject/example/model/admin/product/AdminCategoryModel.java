@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.constraints.NotEmpty;
 
-public class CategoryModel {
+public class AdminCategoryModel {
 	private Long categoryId;
 	private String categoryCode;
 	@NotEmpty
@@ -17,11 +17,11 @@ public class CategoryModel {
 	private Boolean active;
 	private Boolean isEdit = false;
 
-	public CategoryModel() {
+	public AdminCategoryModel() {
 
 	}
 
-	public CategoryModel(Long categoryId, String categoryCode, String categoryName, String images, MultipartFile imageFile,
+	public AdminCategoryModel(Long categoryId, String categoryCode, String categoryName, String images, MultipartFile imageFile,
 			String description, Boolean active, Boolean isEdit) {
 		this.categoryId = categoryId;
 		this.categoryCode = categoryCode;

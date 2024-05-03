@@ -13,8 +13,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "category")
-public class CategoryEntity implements Serializable {
+@Table(name = "a_category")
+public class AdminCategoryEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class CategoryEntity implements Serializable {
 	@Column(name = "category_code")
 	private String categoryCode;
 
-	@Column(name = "category_name", columnDefinition = "nvarchar(255)")
+	@Column(name = "category_name")
 	private String categoryName;
 
 	@Column(name = "description")
@@ -40,14 +40,14 @@ public class CategoryEntity implements Serializable {
 
 	// tao ket noi 1 to many vs product
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-	private Set<ProductsEntity> products;
+	private Set<AdminProductsEntity> products;
 
-	public CategoryEntity() {
+	public AdminCategoryEntity() {
 
 	}
 
-	public CategoryEntity(Long categoryId, String categoryCode, String categoryName, String description, String images,
-			 Boolean active, Set<ProductsEntity> products) {
+	public AdminCategoryEntity(Long categoryId, String categoryCode, String categoryName, String description, String images,
+			 Boolean active, Set<AdminProductsEntity> products) {
 		this.categoryId = categoryId;
 		this.categoryCode = categoryCode;
 		this.categoryName = categoryName;
@@ -105,11 +105,11 @@ public class CategoryEntity implements Serializable {
 		this.active = active;
 	}
 
-	public Set<ProductsEntity> getProducts() {
+	public Set<AdminProductsEntity> getProducts() {
 		return products;
 	}
 
-	public void setProducts(Set<ProductsEntity> products) {
+	public void setProducts(Set<AdminProductsEntity> products) {
 		this.products = products;
 	}
 

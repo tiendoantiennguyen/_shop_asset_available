@@ -1,9 +1,9 @@
-package com.springbootproject.example.entity.web.customer;
+package com.springbootproject.example.entity.admin.customer;
 
 import java.util.Date;
 import java.util.Set;
 
-import com.springbootproject.example.entity.web.product.OrderEntity;
+import com.springbootproject.example.entity.admin.product.AdminOrderEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -13,11 +13,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Customer")
-public class CustomerEntity {
+@Table(name = "a_customer")
+public class AdminCustomerEntity {
 
 	@Id
-	@Column(name = "customerId")
+	@Column(name = "customer_id")
 	private String customerId;
 
 	@Column(name = "first_name")
@@ -110,20 +110,23 @@ public class CustomerEntity {
 	@Column(name = "date_entry")
 	private Date dateEntry;
 
-	@OneToMany(mappedBy = "customers", cascade = CascadeType.ALL)
-	private Set<OrderEntity> orders;
 
-	public CustomerEntity() {
+	@OneToMany(mappedBy = "adorders_adcustomer", cascade = CascadeType.ALL)
+	private Set<AdminOrderEntity> orders;
+	
+
+	public AdminCustomerEntity() {
 
 	}
 
-	public CustomerEntity(String customerId, String firstName, String lastName, String classId, String room,
+
+	public AdminCustomerEntity(String customerId, String firstName, String lastName, String classId, String room,
 			String building, String address1, String address2, String city, String state, Long postalCode,
 			String country, String phone, String email, String voiceMail, String password, String creditCard,
 			String creditCardTypeId, String cardExpMo, String cardExpiredYear, String billingAddress,
 			String billingCity, String billingRegion, String billingPostalCode, String billingCountry,
 			String shipAddress, String shipCity, String shipRegion, String shipPostalCode, String shipCountry,
-			Date dateEntry, Set<OrderEntity> orders) {
+			Date dateEntry, Set<AdminOrderEntity> orders) {
 		this.customerId = customerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -157,260 +160,325 @@ public class CustomerEntity {
 		this.dateEntry = dateEntry;
 		this.orders = orders;
 	}
+
 
 	public String getCustomerId() {
 		return customerId;
 	}
 
+
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
+
 
 	public String getFirstName() {
 		return firstName;
 	}
 
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 
 	public String getLastName() {
 		return lastName;
 	}
 
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 
 	public String getClassId() {
 		return classId;
 	}
 
+
 	public void setClassId(String classId) {
 		this.classId = classId;
 	}
+
 
 	public String getRoom() {
 		return room;
 	}
 
+
 	public void setRoom(String room) {
 		this.room = room;
 	}
+
 
 	public String getBuilding() {
 		return building;
 	}
 
+
 	public void setBuilding(String building) {
 		this.building = building;
 	}
+
 
 	public String getAddress1() {
 		return address1;
 	}
 
+
 	public void setAddress1(String address1) {
 		this.address1 = address1;
 	}
+
 
 	public String getAddress2() {
 		return address2;
 	}
 
+
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
+
 
 	public String getCity() {
 		return city;
 	}
 
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 
 	public String getState() {
 		return state;
 	}
 
+
 	public void setState(String state) {
 		this.state = state;
 	}
+
 
 	public Long getPostalCode() {
 		return postalCode;
 	}
 
+
 	public void setPostalCode(Long postalCode) {
 		this.postalCode = postalCode;
 	}
+
 
 	public String getCountry() {
 		return country;
 	}
 
+
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
 
 	public String getPhone() {
 		return phone;
 	}
 
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 
 	public String getEmail() {
 		return email;
 	}
 
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 
 	public String getVoiceMail() {
 		return voiceMail;
 	}
 
+
 	public void setVoiceMail(String voiceMail) {
 		this.voiceMail = voiceMail;
 	}
+
 
 	public String getPassword() {
 		return password;
 	}
 
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 	public String getCreditCard() {
 		return creditCard;
 	}
 
+
 	public void setCreditCard(String creditCard) {
 		this.creditCard = creditCard;
 	}
+
 
 	public String getCreditCardTypeId() {
 		return creditCardTypeId;
 	}
 
+
 	public void setCreditCardTypeId(String creditCardTypeId) {
 		this.creditCardTypeId = creditCardTypeId;
 	}
+
 
 	public String getCardExpMo() {
 		return cardExpMo;
 	}
 
+
 	public void setCardExpMo(String cardExpMo) {
 		this.cardExpMo = cardExpMo;
 	}
+
 
 	public String getCardExpiredYear() {
 		return cardExpiredYear;
 	}
 
+
 	public void setCardExpiredYear(String cardExpiredYear) {
 		this.cardExpiredYear = cardExpiredYear;
 	}
+
 
 	public String getBillingAddress() {
 		return billingAddress;
 	}
 
+
 	public void setBillingAddress(String billingAddress) {
 		this.billingAddress = billingAddress;
 	}
+
 
 	public String getBillingCity() {
 		return billingCity;
 	}
 
+
 	public void setBillingCity(String billingCity) {
 		this.billingCity = billingCity;
 	}
+
 
 	public String getBillingRegion() {
 		return billingRegion;
 	}
 
+
 	public void setBillingRegion(String billingRegion) {
 		this.billingRegion = billingRegion;
 	}
+
 
 	public String getBillingPostalCode() {
 		return billingPostalCode;
 	}
 
+
 	public void setBillingPostalCode(String billingPostalCode) {
 		this.billingPostalCode = billingPostalCode;
 	}
+
 
 	public String getBillingCountry() {
 		return billingCountry;
 	}
 
+
 	public void setBillingCountry(String billingCountry) {
 		this.billingCountry = billingCountry;
 	}
+
 
 	public String getShipAddress() {
 		return shipAddress;
 	}
 
+
 	public void setShipAddress(String shipAddress) {
 		this.shipAddress = shipAddress;
 	}
+
 
 	public String getShipCity() {
 		return shipCity;
 	}
 
+
 	public void setShipCity(String shipCity) {
 		this.shipCity = shipCity;
 	}
+
 
 	public String getShipRegion() {
 		return shipRegion;
 	}
 
+
 	public void setShipRegion(String shipRegion) {
 		this.shipRegion = shipRegion;
 	}
+
 
 	public String getShipPostalCode() {
 		return shipPostalCode;
 	}
 
+
 	public void setShipPostalCode(String shipPostalCode) {
 		this.shipPostalCode = shipPostalCode;
 	}
+
 
 	public String getShipCountry() {
 		return shipCountry;
 	}
 
+
 	public void setShipCountry(String shipCountry) {
 		this.shipCountry = shipCountry;
 	}
+
 
 	public Date getDateEntry() {
 		return dateEntry;
 	}
 
+
 	public void setDateEntry(Date dateEntry) {
 		this.dateEntry = dateEntry;
 	}
 
-	public Set<OrderEntity> getOrders() {
+
+	public Set<AdminOrderEntity> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(Set<OrderEntity> orders) {
+
+	public void setOrders(Set<AdminOrderEntity> orders) {
 		this.orders = orders;
 	}
+
 }

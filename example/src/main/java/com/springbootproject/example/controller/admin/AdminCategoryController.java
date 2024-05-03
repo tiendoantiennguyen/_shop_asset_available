@@ -23,42 +23,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springbootproject.example.entity.admin.product.CategoryEntity;
-import com.springbootproject.example.model.admin.product.CategoryModel;
-import com.springbootproject.example.service.admin.product.ICategoryService;
+import com.springbootproject.example.entity.admin.product.AdminCategoryEntity;
+import com.springbootproject.example.model.admin.product.AdminCategoryModel;
+import com.springbootproject.example.service.admin.product.IAdminCategoryService;
 
 import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/admin/categories")
-public class CategoryController {
+public class AdminCategoryController {
 	@Autowired
-	ICategoryService categoryService;
+	IAdminCategoryService categoryService;
 
 	@GetMapping("")
 	public String list(ModelMap model) {
-		List<CategoryEntity> list = categoryService.findAll();
+		List<AdminCategoryEntity> list = categoryService.findAll();
 		model.addAttribute("categories", list);
-		return "amin/categories/list";
+		return "admin/categoryManagement";
 	}
 
 	@GetMapping("/add")
 	public String add(ModelMap model) {
-		CategoryModel category = new CategoryModel();
+		AdminCategoryModel category = new AdminCategoryModel();
 		category.setIsEdit(false);
 		model.addAttribute("category", category);
-		return "admin/categories/addOrEdit";
+		return "admin/categoryAdd";
 	}
 
 	@PostMapping("/saveOrUpdate")
-	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("category") CategoryModel categoryModel,
+	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("category") AdminCategoryModel categoryModel,
 			BindingResult result) {
 		String message = "";
 
 		if (result.hasErrors()) {
 			return new ModelAndView("admin/categories/adOrEdit");
 		}
-		CategoryEntity entity = new CategoryEntity();
+		AdminCategoryEntity entity = new AdminCategoryEntity();
 
 		// Copy data from model to entity
 		BeanUtils.copyProperties(categoryModel, entity);
@@ -78,10 +78,10 @@ public class CategoryController {
 
 	@PostMapping("/edit/{categoryId}")
 	public ModelAndView edit(ModelMap model, @PathVariable("categoryId") Long categoryId) {
-		Optional<CategoryEntity> opt = categoryService.findById(categoryId);
-		CategoryModel categoryModel = new CategoryModel();
+		Optional<AdminCategoryEntity> opt = categoryService.findById(categoryId);
+		AdminCategoryModel categoryModel = new AdminCategoryModel();
 		if (opt.isPresent()) {
-			CategoryEntity entity = opt.get();
+			AdminCategoryEntity entity = opt.get();
 			// Copy data from model to entity
 			BeanUtils.copyProperties(entity, opt);
 			categoryModel.setIsEdit(true);
@@ -104,7 +104,7 @@ public class CategoryController {
 	@GetMapping("/search")
 	public String search(ModelMap modelMap, @RequestParam(name = "name", required = false) String name) {
 		
-		List<CategoryEntity> list = null;
+		List<AdminCategoryEntity> list = null;
 		if(StringUtils.hasText(name)) {
 			list = categoryService.findByCategoryNameContainining(name);
 		}else {
@@ -126,7 +126,7 @@ public class CategoryController {
 		
 		Pageable pageable = PageRequest.of(currentPage -1, pageSize, Sort.by("categoryId"));
 		
-		Page<CategoryEntity> resultPage = null;
+		Page<AdminCategoryEntity> resultPage = null;
 		
 		if(StringUtils.hasText(name)) {
 			resultPage = categoryService.findByCategoryNameContainining(name, pageable);

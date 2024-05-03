@@ -1,100 +1,42 @@
-package com.springbootproject.example.entity.web.product;
+package com.springbootproject.example.model.admin.product;
 
-import java.util.Set;
-
-import com.springbootproject.example.entity.web.customer.CustomerEntity;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
- 
-@Entity
-@Table(name = "orders")
-public class OrderEntity {
-
-	@Id
-	@Column(name = "order_id")
+public class AdminOrderModel {
+	
 	private String orderId;
-
-	@Column(name = "order_number")
+	private String customerId;
 	private String orderNumber;
-
-	@Column(name = "order_date")
+	private String paymentId;
 	private String orderDate;
-
-	@Column(name = "ship_date")
 	private String shipDate;
-
-	@Column(name = "required_date")
 	private String requiredDate;
-
-	@Column(name = "freight")
+	private String shipperId;
 	private String freight;
-
-	@Column(name = "sale_tax")
 	private String saleTax;
-
-	@Column(name = "timestample")
 	private String timestample;
-
-	@Column(name = "transaction_status")
 	private String transactionStatus;
-
-	@Column(name = "errLog")
 	private String errLog;
-
-	@Column(name = "errMsg")
 	private String errMsg;
-
-	@Column(name = "fulFiled")
 	private String fulFiled;
-
-	@Column(name = "deleted")
 	private String deleted;
-
-	@Column(name = "paid")
 	private String paid;
-
-	@Column(name = "payment_date")
 	private String paymentDate;
-
-	// many to one customer and order table.
-	@ManyToOne
-	@JoinColumn(name = "customer_id")
-	private CustomerEntity customers;
-
-	// many to one order and payment table.
-	@ManyToOne
-	@JoinColumn(name = "payment_id")
-	private PaymentEntity payments;
-
-	// many to one order and shipper table.
-	@ManyToOne
-	@JoinColumn(name = "shipper_id")
-	private ShipperEntity shippers;
-
-	//one to many
-	@OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-	private Set<OrderDetailEntity> ordersDetails;
-
-	public OrderEntity() {
-
+	
+	public AdminOrderModel() {
+		
 	}
 
-	public OrderEntity(String orderId, String orderNumber, String orderDate, String shipDate, String requiredDate,
-			String freight, String saleTax, String timestample, String transactionStatus, String errLog, String errMsg,
-			String fulFiled, String deleted, String paid, String paymentDate, CustomerEntity customers,
-			PaymentEntity payments, ShipperEntity shippers, Set<OrderDetailEntity> ordersDetails) {
+	public AdminOrderModel(String orderId, String customerId, String orderNumber, String paymentId, String orderDate,
+			String shipDate, String requiredDate, String shipperId, String freight, String saleTax, String timestample,
+			String transactionStatus, String errLog, String errMsg, String fulFiled, String deleted, String paid,
+			String paymentDate) {
 		this.orderId = orderId;
+		this.customerId = customerId;
 		this.orderNumber = orderNumber;
+		this.paymentId = paymentId;
 		this.orderDate = orderDate;
 		this.shipDate = shipDate;
 		this.requiredDate = requiredDate;
+		this.shipperId = shipperId;
 		this.freight = freight;
 		this.saleTax = saleTax;
 		this.timestample = timestample;
@@ -105,10 +47,6 @@ public class OrderEntity {
 		this.deleted = deleted;
 		this.paid = paid;
 		this.paymentDate = paymentDate;
-		this.customers = customers;
-		this.payments = payments;
-		this.shippers = shippers;
-		this.ordersDetails = ordersDetails;
 	}
 
 	public String getOrderId() {
@@ -119,12 +57,28 @@ public class OrderEntity {
 		this.orderId = orderId;
 	}
 
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+
 	public String getOrderNumber() {
 		return orderNumber;
 	}
 
 	public void setOrderNumber(String orderNumber) {
 		this.orderNumber = orderNumber;
+	}
+
+	public String getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(String paymentId) {
+		this.paymentId = paymentId;
 	}
 
 	public String getOrderDate() {
@@ -149,6 +103,14 @@ public class OrderEntity {
 
 	public void setRequiredDate(String requiredDate) {
 		this.requiredDate = requiredDate;
+	}
+
+	public String getShipperId() {
+		return shipperId;
+	}
+
+	public void setShipperId(String shipperId) {
+		this.shipperId = shipperId;
 	}
 
 	public String getFreight() {
@@ -230,38 +192,5 @@ public class OrderEntity {
 	public void setPaymentDate(String paymentDate) {
 		this.paymentDate = paymentDate;
 	}
-
-	public CustomerEntity getCustomers() {
-		return customers;
-	}
-
-	public void setCustomers(CustomerEntity customers) {
-		this.customers = customers;
-	}
-
-	public PaymentEntity getPayments() {
-		return payments;
-	}
-
-	public void setPayments(PaymentEntity payments) {
-		this.payments = payments;
-	}
-
-	public ShipperEntity getShippers() {
-		return shippers;
-	}
-
-	public void setShippers(ShipperEntity shippers) {
-		this.shippers = shippers;
-	}
-
-	public Set<OrderDetailEntity> getOrdersDetails() {
-		return ordersDetails;
-	}
-
-	public void setOrdersDetails(Set<OrderDetailEntity> ordersDetails) {
-		this.ordersDetails = ordersDetails;
-	}
-
 	
 }

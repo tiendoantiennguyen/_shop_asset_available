@@ -3,8 +3,6 @@ package com.springbootproject.example.entity.web.product;
 import java.io.Serializable;
 import java.util.Set;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +26,7 @@ public class CategoryEntity implements Serializable {
 	@Column(name = "category_code")
 	private String categoryCode;
 
-	@Column(name = "category_name", columnDefinition = "nvarchar(255)")
+	@Column(name = "category_name")
 	private String categotyName;
 
 	@Column(name = "description")
@@ -41,7 +39,7 @@ public class CategoryEntity implements Serializable {
 	private Boolean active;
 
 	// tao ket noi 1 to many vs product
-	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "categorys", cascade = CascadeType.ALL)
 	private Set<ProductsEntity> products;
 
 	public CategoryEntity() {

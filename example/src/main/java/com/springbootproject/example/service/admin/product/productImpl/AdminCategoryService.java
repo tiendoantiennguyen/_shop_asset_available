@@ -12,42 +12,42 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.stereotype.Service;
 
-import com.springbootproject.example.entity.admin.product.CategoryEntity;
-import com.springbootproject.example.repository.admin.product.CategoryRepository;
-import com.springbootproject.example.service.admin.product.ICategoryService;
+import com.springbootproject.example.entity.admin.product.AdminCategoryEntity;
+import com.springbootproject.example.repository.admin.product.AdminCategoryRepository;
+import com.springbootproject.example.service.admin.product.IAdminCategoryService;
 
 @Service
-public class CategoryService implements ICategoryService {
+public class AdminCategoryService implements IAdminCategoryService {
 
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private AdminCategoryRepository categoryRepository;
 
-	public CategoryService() {
+	public AdminCategoryService() {
 
 	}
 
-	public CategoryService(CategoryRepository categoryRepository) {
+	public AdminCategoryService(AdminCategoryRepository categoryRepository) {
 		super();
 		this.categoryRepository = categoryRepository;
 	}
 
 	@Override
-	public <S extends CategoryEntity> S save(S entity) {
+	public <S extends AdminCategoryEntity> S save(S entity) {
 		return categoryRepository.save(entity);
 	}
 
 	@Override
-	public <S extends CategoryEntity> List<S> saveAll(Iterable<S> entities) {
+	public <S extends AdminCategoryEntity> List<S> saveAll(Iterable<S> entities) {
 		return categoryRepository.saveAll(entities);
 	}
 
 	@Override
-	public <S extends CategoryEntity> Optional<S> findOne(Example<S> example) {
+	public <S extends AdminCategoryEntity> Optional<S> findOne(Example<S> example) {
 		return categoryRepository.findOne(example);
 	}
 
 	@Override
-	public List<CategoryEntity> findAll(Sort sort) {
+	public List<AdminCategoryEntity> findAll(Sort sort) {
 		return categoryRepository.findAll(sort);
 	}
 
@@ -57,42 +57,42 @@ public class CategoryService implements ICategoryService {
 	}
 
 	@Override
-	public Page<CategoryEntity> findAll(Pageable pageable) {
+	public Page<AdminCategoryEntity> findAll(Pageable pageable) {
 		return categoryRepository.findAll(pageable);
 	}
 
 	@Override
-	public <S extends CategoryEntity> S saveAndFlush(S entity) {
+	public <S extends AdminCategoryEntity> S saveAndFlush(S entity) {
 		return categoryRepository.saveAndFlush(entity);
 	}
 
 	@Override
-	public <S extends CategoryEntity> List<S> saveAllAndFlush(Iterable<S> entities) {
+	public <S extends AdminCategoryEntity> List<S> saveAllAndFlush(Iterable<S> entities) {
 		return categoryRepository.saveAllAndFlush(entities);
 	}
 
 	@Override
-	public List<CategoryEntity> findAll() {
+	public List<AdminCategoryEntity> findAll() {
 		return categoryRepository.findAll();
 	}
 
 	@Override
-	public List<CategoryEntity> findAllById(Iterable<Long> ids) {
+	public List<AdminCategoryEntity> findAllById(Iterable<Long> ids) {
 		return categoryRepository.findAllById(ids);
 	}
 
 	@Override
-	public void deleteInBatch(Iterable<CategoryEntity> entities) {
+	public void deleteInBatch(Iterable<AdminCategoryEntity> entities) {
 		categoryRepository.deleteInBatch(entities);
 	}
 
 	@Override
-	public Optional<CategoryEntity> findById(Long id) {
+	public Optional<AdminCategoryEntity> findById(Long id) {
 		return categoryRepository.findById(id);
 	}
 
 	@Override
-	public void deleteAllInBatch(Iterable<CategoryEntity> entities) {
+	public void deleteAllInBatch(Iterable<AdminCategoryEntity> entities) {
 		categoryRepository.deleteAllInBatch(entities);
 	}
 
@@ -102,7 +102,7 @@ public class CategoryService implements ICategoryService {
 	}
 
 	@Override
-	public <S extends CategoryEntity> long count(Example<S> example) {
+	public <S extends AdminCategoryEntity> long count(Example<S> example) {
 		return categoryRepository.count(example);
 	}
 
@@ -112,7 +112,7 @@ public class CategoryService implements ICategoryService {
 	}
 
 	@Override
-	public <S extends CategoryEntity> boolean exists(Example<S> example) {
+	public <S extends AdminCategoryEntity> boolean exists(Example<S> example) {
 		return categoryRepository.exists(example);
 	}
 
@@ -122,12 +122,12 @@ public class CategoryService implements ICategoryService {
 	}
 
 	@Override
-	public CategoryEntity getOne(Long id) {
+	public AdminCategoryEntity getOne(Long id) {
 		return categoryRepository.getOne(id);
 	}
 
 	@Override
-	public <S extends CategoryEntity, R> R findBy(Example<S> example,
+	public <S extends AdminCategoryEntity, R> R findBy(Example<S> example,
 			Function<FetchableFluentQuery<S>, R> queryFunction) {
 		return categoryRepository.findBy(example, queryFunction);
 	}
@@ -143,12 +143,12 @@ public class CategoryService implements ICategoryService {
 	}
 
 	@Override
-	public CategoryEntity getById(Long id) {
+	public AdminCategoryEntity getById(Long id) {
 		return categoryRepository.getById(id);
 	}
 
 	@Override
-	public void delete(CategoryEntity entity) {
+	public void delete(AdminCategoryEntity entity) {
 		categoryRepository.delete(entity);
 	}
 
@@ -158,17 +158,17 @@ public class CategoryService implements ICategoryService {
 	}
 
 	@Override
-	public CategoryEntity getReferenceById(Long id) {
+	public AdminCategoryEntity getReferenceById(Long id) {
 		return categoryRepository.getReferenceById(id);
 	}
 
 	@Override
-	public void deleteAll(Iterable<? extends CategoryEntity> entities) {
+	public void deleteAll(Iterable<? extends AdminCategoryEntity> entities) {
 		categoryRepository.deleteAll(entities);
 	}
 
 	@Override
-	public <S extends CategoryEntity> List<S> findAll(Example<S> example) {
+	public <S extends AdminCategoryEntity> List<S> findAll(Example<S> example) {
 		return categoryRepository.findAll(example);
 	}
 
@@ -178,15 +178,15 @@ public class CategoryService implements ICategoryService {
 	}
 
 	@Override
-	public List<CategoryEntity> findByCategoryNameContainining(String name) {
+	public List<AdminCategoryEntity> findByCategoryNameContainining(String name) {
 
-		return categoryRepository.findByCategoryNameContainining(name);
+		return categoryRepository.findByCategoryNameContaining(name);
 	}
 
 	@Override
-	public Page<CategoryEntity> findByCategoryNameContainining(String name, Pageable pageable) {
+	public Page<AdminCategoryEntity> findByCategoryNameContainining(String name, Pageable pageable) {
 
-		return categoryRepository.findByCategoryNameContainining(name, pageable);
+		return categoryRepository.findByCategoryNameContaining(name, pageable);
 	}
 
 }

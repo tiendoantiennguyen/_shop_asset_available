@@ -1,4 +1,4 @@
-package com.springbootproject.example.entity.web.product;
+package com.springbootproject.example.entity.admin.product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,12 +8,13 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Order_detail")
-public class OrderDetailEntity {
+@Table(name = "a_order_detail")
+public class AdminOrderDetailEntity {
 
 	@Id
 	@Column(name = "order_detail_id")
 	private String orderDetailId;
+
 
 	@Column(name = "order_number")
 	private String orderNumber;
@@ -48,22 +49,23 @@ public class OrderDetailEntity {
 	@Column(name = "BillDate")
 	private String BillDate;
 
+	// many to one oder and order detail table
+	@ManyToOne
+	@JoinColumn(name = "order_id")
+	private AdminOrderEntity adOrder_adOrderDetail;
+
 	// many to one
 	@ManyToOne
 	@JoinColumn(name = "product_id")
-	private ProductsEntity products;
+	private AdminProductsEntity product;
 
-	@ManyToOne
-	@JoinColumn(name = "order_id")
-	private OrderEntity orders;
-
-	public OrderDetailEntity() {
+	public AdminOrderDetailEntity() {
 
 	}
 
-	public OrderDetailEntity(String orderDetailId, String orderNumber, Long price, Integer quantity, String discount,
-			Long total, String iDSKU, String size, String color, String fulfilled, String shipDate, String billDate,
-			ProductsEntity products, OrderEntity orders) {
+	public AdminOrderDetailEntity(String orderDetailId, String orderNumber, Long price, Integer quantity,
+			String discount, Long total, String iDSKU, String size, String color, String fulfilled, String shipDate,
+			String billDate, AdminOrderEntity adOrder_adOrderDetail, AdminProductsEntity product) {
 		this.orderDetailId = orderDetailId;
 		this.orderNumber = orderNumber;
 		this.price = price;
@@ -76,8 +78,8 @@ public class OrderDetailEntity {
 		this.fulfilled = fulfilled;
 		this.shipDate = shipDate;
 		BillDate = billDate;
-		this.products = products;
-		this.orders = orders;
+		this.adOrder_adOrderDetail = adOrder_adOrderDetail;
+		this.product = product;
 	}
 
 	public String getOrderDetailId() {
@@ -176,19 +178,20 @@ public class OrderDetailEntity {
 		BillDate = billDate;
 	}
 
-	public ProductsEntity getProducts() {
-		return products;
+	public AdminOrderEntity getAdOrder_adOrderDetail() {
+		return adOrder_adOrderDetail;
 	}
 
-	public void setProducts(ProductsEntity products) {
-		this.products = products;
+	public void setAdOrder_adOrderDetail(AdminOrderEntity adOrder_adOrderDetail) {
+		this.adOrder_adOrderDetail = adOrder_adOrderDetail;
 	}
 
-	public OrderEntity getOrders() {
-		return orders;
+	public AdminProductsEntity getProduct() {
+		return product;
 	}
 
-	public void setOrders(OrderEntity orders) {
-		this.orders = orders;
+	public void setProduct(AdminProductsEntity product) {
+		this.product = product;
 	}
+
 }

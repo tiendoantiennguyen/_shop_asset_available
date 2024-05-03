@@ -1,22 +1,18 @@
-package com.springbootproject.example.entity.web.product;
-
-import com.springbootproject.example.entity.admin.product.AdminOrderEntity;
+package com.springbootproject.example.entity.admin.product;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "payment")
-public class PaymentEntity {
+@Table(name = "a_payment")
+public class AdminPaymentEntity {
 
 	@Id
-	@Column(name = "paymentId")
+	@Column(name = "payment_id")
 	private String paymentId;
 
 	@Column(name = "payment_type")
@@ -26,14 +22,14 @@ public class PaymentEntity {
 	private String allowed;
 
 	// one to many order and payment method.
-	@OneToOne(mappedBy = "payments", cascade = CascadeType.ALL)
-	private OrderEntity orders;
+	@OneToOne(mappedBy = "adorders_adpayment", cascade = CascadeType.ALL)
+	private AdminOrderEntity orders;
 
-	public PaymentEntity() {
+	public AdminPaymentEntity() {
 
 	}
 
-	public PaymentEntity(String paymentId, String paymentType, String allowed, OrderEntity orders) {
+	public AdminPaymentEntity(String paymentId, String paymentType, String allowed, AdminOrderEntity orders) {
 		this.paymentId = paymentId;
 		this.paymentType = paymentType;
 		this.allowed = allowed;
@@ -64,11 +60,11 @@ public class PaymentEntity {
 		this.allowed = allowed;
 	}
 
-	public OrderEntity getOrders() {
+	public AdminOrderEntity getOrders() {
 		return orders;
 	}
 
-	public void setOrders(OrderEntity orders) {
+	public void setOrders(AdminOrderEntity orders) {
 		this.orders = orders;
 	}
 

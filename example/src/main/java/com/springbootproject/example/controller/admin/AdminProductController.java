@@ -24,30 +24,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springbootproject.example.entity.admin.product.CategoryEntity;
-import com.springbootproject.example.entity.admin.product.ProductsEntity;
-import com.springbootproject.example.model.admin.product.ProductModel;
-import com.springbootproject.example.model.web.product.CategoryModel;
-import com.springbootproject.example.service.admin.product.IProductService;
-import com.springbootproject.example.service.web.product.ICategoryService;
+import com.springbootproject.example.entity.admin.product.AdminCategoryEntity;
+import com.springbootproject.example.entity.admin.product.AdminProductsEntity;
+import com.springbootproject.example.model.admin.product.AdminProductModel;
+import com.springbootproject.example.model.admin.product.AdminCategoryModel;
+import com.springbootproject.example.service.admin.product.IAdminProductService;
+import com.springbootproject.example.service.admin.product.IAdminCategoryService;
 
 import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/admin/product")
-public class ProductController {
+public class AdminProductController {
 	
 	@Autowired
-	IProductService productService;
+	IAdminProductService productService;
 	
 	@Autowired
-	ICategoryService categoryService;
+	IAdminCategoryService categoryService;
 	
 	//get all of category and then map to model
 	@ModelAttribute("categories")
-	public List<CategoryModel> getCategories(){
+	public List<AdminCategoryModel> getCategories(){
 		return categoryService.findAll().stream().map(item -> {
-			CategoryModel categoryModel = new CategoryModel();
+			AdminCategoryModel categoryModel = new AdminCategoryModel();
 			BeanUtils.copyProperties(item, categoryModel);
 			return categoryModel;
 		}).toList();
@@ -55,21 +55,21 @@ public class ProductController {
 
 	@GetMapping("")
 	public String list(ModelMap model) {
-		List<ProductsEntity> list = productService.findAll();
+		List<AdminProductsEntity> list = productService.findAll();
 		model.addAttribute("product", list);
 		return "amin/product/list";
 	}
 
 	@GetMapping("/add")
 	public String add(ModelMap model) {
-		ProductModel productModel = new ProductModel();
+		AdminProductModel productModel = new AdminProductModel();
 		productModel.setIsEdit(false);
 		model.addAttribute("product", productModel);
 		return "admin/product/addOrEdit";
 	}
 
 	@PostMapping("/saveOrUpdate")
-	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("product") ProductModel productModel,
+	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("product") AdminProductModel productModel,
 			BindingResult result) {
 		String message = "";
 
@@ -78,7 +78,7 @@ public class ProductController {
 		}
 		UUID uuid = UUID.randomUUID();
 		String uuservice = uuid.toString();
-		ProductsEntity entity = new ProductsEntity();
+		AdminProductsEntity entity = new AdminProductsEntity();
 
 		// Copy data from model to entity
 		BeanUtils.copyProperties(productModel, entity);
@@ -86,7 +86,7 @@ public class ProductController {
 		entity.setProductId(uuservice);
 		
 		// process category
-		CategoryEntity categoryEntity = new  CategoryEntity();
+		AdminCategoryEntity categoryEntity = new  AdminCategoryEntity();
 		categoryEntity.setCategoryId(productModel.getCategoryId());
 		entity.setCategory(categoryEntity);
 
@@ -105,10 +105,10 @@ public class ProductController {
 
 	@PostMapping("/edit/{productId}")
 	public ModelAndView edit(ModelMap model, @PathVariable("productId") String productId) {
-		Optional<ProductsEntity> opt = productService.findById(productId);
-		ProductModel productModel = new ProductModel();
+		Optional<AdminProductsEntity> opt = productService.findById(productId);
+		AdminProductModel productModel = new AdminProductModel();
 		if (opt.isPresent()) {
-			ProductsEntity entity = opt.get();
+			AdminProductsEntity entity = opt.get();
 			// Copy data from model to entity
 			BeanUtils.copyProperties(entity, opt);
 			productModel.setIsEdit(true);
@@ -131,9 +131,9 @@ public class ProductController {
 	@GetMapping("/search")
 	public String search(ModelMap modelMap, @RequestParam(name = "name", required = false) String name) {
 		
-		List<ProductsEntity> list = null;
+		List<AdminProductsEntity> list = null;
 		if(StringUtils.hasText(name)) {
-			list = productService.findByCategoryNameContainining(name);
+			list = productService.findByProductNameContaining(name);
 		}else {
 			list = productService.findAll();
 		}
@@ -153,10 +153,10 @@ public class ProductController {
 		
 		Pageable pageable = PageRequest.of(currentPage -1, pageSize, Sort.by("productId"));
 		
-		Page<ProductsEntity> resultPage = null;
+		Page<AdminProductsEntity> resultPage = null;
 		
 		if(StringUtils.hasText(name)) {
-			resultPage = productService.findByCategoryNameContainining(name, pageable);
+			resultPage = productService.findByProductNameContaining(name, pageable);
 			modelMap.addAttribute("name", name);
 		}else {
 			resultPage = productService.findAll(pageable);
